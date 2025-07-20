@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  react-landing-page:
+    build: .
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    container_name: react-landing-page
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.react-landing-page.rule=Host(`localhost`)"
+      - "traefik.http.services.react-landing-page.loadbalancer.server.port=80"
