@@ -60,18 +60,20 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section" style={{ background: '#1e293b', color: 'white' }}>
-      <div className="container">
-        <h2 className="section-title" style={{ color: 'white' }}>Get In Touch</h2>
-        <p className="section-subtitle" style={{ color: '#94a3b8' }}>
-          Ready to collaborate on your next DevOps or AI/MLOps project? Let's discuss how I can help!
-        </p>
+    <section id="contact" className="py-20 bg-gray-800 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Ready to collaborate on your next DevOps or AI/MLOps project? Let's discuss how I can help!
+          </p>
+        </div>
         
-        <div className="contact-content">
-          <div className="contact-info">
-            <div className="contact-intro">
-              <h3>Let's Work Together</h3>
-              <p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-3xl font-bold text-white mb-6">Let's Work Together</h3>
+              <p className="text-lg text-gray-300 leading-relaxed mb-8">
                 I'm always interested in new opportunities, challenging projects, and 
                 collaborating with like-minded professionals. Whether you need help with 
                 cloud infrastructure, DevOps automation, or exploring AI/MLOps solutions, 
@@ -79,42 +81,47 @@ const Contact = () => {
               </p>
             </div>
             
-            <div className="contact-details">
+            <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <div key={index} className="contact-item">
-                  <div className="contact-icon">{info.icon}</div>
-                  <div className="contact-text">
-                    <h4>{info.title}</h4>
+                <div key={index} className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl transition-all duration-300 hover:bg-white/10 hover:translate-x-2">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center text-xl">
+                    {info.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">{info.title}</h4>
                     {info.link ? (
                       <a 
                         href={info.link} 
                         target={info.link.startsWith('http') ? '_blank' : '_self'}
                         rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                        className="text-cyber-blue hover:text-cyber-green transition-colors duration-300 hover:underline"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <span>{info.value}</span>
+                      <span className="text-gray-400">{info.value}</span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
             
-            <div className="availability">
-              <div className="status-indicator">
-                <div className="status-dot available"></div>
-                <span>Available for new projects</span>
+            <div className="p-6 bg-cyber-green/10 border border-cyber-green/20 rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse shadow-cyber"></div>
+                <span className="font-semibold text-cyber-green">Available for new projects</span>
               </div>
-              <p>Response time: Usually within 24 hours</p>
+              <p className="text-gray-300 text-sm">Response time: Usually within 24 hours</p>
             </div>
           </div>
           
-          <div className="contact-form-container">
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Name *</label>
+          <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
+                    Name *
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -123,10 +130,13 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Your Name"
+                    className="form-input"
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email *</label>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
+                    Email *
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -135,12 +145,15 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="your.email@example.com"
+                    className="form-input"
                   />
                 </div>
               </div>
               
-              <div className="form-group">
-                <label htmlFor="subject">Subject *</label>
+              <div>
+                <label htmlFor="subject" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
+                  Subject *
+                </label>
                 <input
                   type="text"
                   id="subject"
@@ -149,11 +162,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="Project Discussion / Job Opportunity / Consultation"
+                  className="form-input"
                 />
               </div>
               
-              <div className="form-group">
-                <label htmlFor="message">Message *</label>
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
+                  Message *
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -162,12 +178,13 @@ const Contact = () => {
                   required
                   rows="6"
                   placeholder="Tell me about your project, requirements, or how I can help..."
+                  className="form-input resize-none min-h-[150px]"
                 ></textarea>
               </div>
               
               <button 
                 type="submit" 
-                className="submit-btn"
+                className="submit-btn disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -178,7 +195,7 @@ const Contact = () => {
               </button>
               
               {submitStatus === 'success' && (
-                <div className="success-message">
+                <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-4 rounded-xl text-center font-semibold mt-4">
                   ✅ Message sent successfully! I'll get back to you soon.
                 </div>
               )}
